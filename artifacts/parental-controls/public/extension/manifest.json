@@ -22,9 +22,5 @@
       "resources": ["blocked.html"],
       "matches": ["<all_urls>"]
     }
-  ],
-  "icons": {
-    "48": "icon.png",
-    "128": "icon.png"
-  }
+  ]
 }
