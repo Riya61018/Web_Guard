@@ -21,7 +21,7 @@ A web app that lets parents **block inappropriate websites** for their children,
 ## Screenshots
 
 ### Dashboard Overview
-![Profiles Management](./results/Screenshot%202026-05-23%20110611.png)
+(./results/Screenshot%202026-05-23%20110611.png)
 *Main dashboard showing key statistics and recent blocked attempts*
 
 ### Profile Details
@@ -35,6 +35,9 @@ A web app that lets parents **block inappropriate websites** for their children,
 ### Extension Management
 ![Activity Log View](./results/Screenshot%202026-05-23%20110719.png)
 *Browser extension download and configuration page*
+
+### Extension Working
+
 
 
 ---
