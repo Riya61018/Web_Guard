@@ -21,16 +21,12 @@ A web app that lets parents **block inappropriate websites** for their children,
 ## Screenshots
 
 ### Dashboard Overview
-![Dashboard Overview](./results/Screenshot%202026-05-23%20110516.png)
+![Profiles Management](./results/Screenshot%202026-05-23%20110611.png)
 *Main dashboard showing key statistics and recent blocked attempts*
 
-### Profiles Management
-![Profiles Management](./results/Screenshot%202026-05-23%20110611.png)
-*Child profiles page with active protection status and controls*
-
-### Profile Details - Blocked Sites
+### Profile Details
 ![Profile Details - Blocked Sites](./results/Screenshot%202026-05-23%20110632.png)
-*Managing blocked websites for a specific child profile*
+*Managing child profile*
 
 ### Category Filtering
 ![Category Filtering](./results/Screenshot%202026-05-23%20110653.png)
