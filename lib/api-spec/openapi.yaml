@@ -3,20 +3,28 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Parental Controls API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: profiles
+    description: Child profile management
+  - name: blockedSites
+    description: Website blocking rules
+  - name: activity
+    description: Activity logs
+  - name: dashboard
+    description: Dashboard stats
+
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,13 +32,347 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /profiles:
+    get:
+      operationId: listProfiles
+      tags: [profiles]
+      summary: List all child profiles
+      responses:
+        "200":
+          description: List of profiles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Profile"
+    post:
+      operationId: createProfile
+      tags: [profiles]
+      summary: Create a child profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+
+  /profiles/{id}:
+    get:
+      operationId: getProfile
+      tags: [profiles]
+      summary: Get a profile by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateProfile
+      tags: [profiles]
+      summary: Update a profile
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileUpdate"
+      responses:
+        "200":
+          description: Updated profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteProfile
+      tags: [profiles]
+      summary: Delete a profile
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+
+  /profiles/{profileId}/blocked-sites:
+    get:
+      operationId: listBlockedSites
+      tags: [blockedSites]
+      summary: List blocked sites for a profile
+      parameters:
+        - name: profileId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of blocked sites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BlockedSite"
+    post:
+      operationId: createBlockedSite
+      tags: [blockedSites]
+      summary: Add a blocked site to a profile
+      parameters:
+        - name: profileId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BlockedSiteInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlockedSite"
+
+  /blocked-sites/{id}:
+    patch:
+      operationId: updateBlockedSite
+      tags: [blockedSites]
+      summary: Toggle or update a blocked site rule
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BlockedSiteUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlockedSite"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteBlockedSite
+      tags: [blockedSites]
+      summary: Remove a blocked site rule
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+
+  /activity:
+    get:
+      operationId: listActivity
+      tags: [activity]
+      summary: Get activity logs, optionally filtered by profile
+      parameters:
+        - name: profileId
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Activity log
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ActivityLog"
+
+  /dashboard/stats:
+    get:
+      operationId: getDashboardStats
+      tags: [dashboard]
+      summary: Get dashboard statistics
+      responses:
+        "200":
+          description: Dashboard stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardStats"
+
 components:
   schemas:
     HealthStatus:
       type: object
+      required: [status]
       properties:
         status:
           type: string
-      required:
-        - status
 
+    Profile:
+      type: object
+      required: [id, name, avatarColor, isActive, createdAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        avatarColor:
+          type: string
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+
+    ProfileInput:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        avatarColor:
+          type: string
+        isActive:
+          type: boolean
+
+    ProfileUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        avatarColor:
+          type: string
+        isActive:
+          type: boolean
+
+    BlockedSite:
+      type: object
+      required: [id, profileId, domain, category, isEnabled, createdAt]
+      properties:
+        id:
+          type: integer
+        profileId:
+          type: integer
+        domain:
+          type: string
+        category:
+          type: string
+        isEnabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+
+    BlockedSiteInput:
+      type: object
+      required: [domain, category]
+      properties:
+        domain:
+          type: string
+          minLength: 1
+        category:
+          type: string
+          minLength: 1
+        isEnabled:
+          type: boolean
+
+    BlockedSiteUpdate:
+      type: object
+      properties:
+        isEnabled:
+          type: boolean
+        category:
+          type: string
+
+    ActivityLog:
+      type: object
+      required: [id, profileId, profileName, domain, wasBlocked, timestamp]
+      properties:
+        id:
+          type: integer
+        profileId:
+          type: integer
+        profileName:
+          type: string
+        domain:
+          type: string
+        wasBlocked:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+
+    DashboardStats:
+      type: object
+      required: [totalProfiles, activeProfiles, totalBlockedSites, totalBlocked24h, topBlockedCategories]
+      properties:
+        totalProfiles:
+          type: integer
+        activeProfiles:
+          type: integer
+        totalBlockedSites:
+          type: integer
+        totalBlocked24h:
+          type: integer
+        topBlockedCategories:
+          type: array
+          items:
+            type: object
+            required: [category, count]
+            properties:
+              category:
+                type: string
+              count:
+                type: integer
