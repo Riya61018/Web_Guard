@@ -28,17 +28,14 @@ A web app that lets parents **block inappropriate websites** for their children,
 ![Profile Details - Blocked Sites](./results/Screenshot%202026-05-23%20110632.png)
 *Managing child profile*
 
-### Category Filtering
-![Category Filtering](./results/Screenshot%202026-05-23%20110653.png)
-*Filter blocked sites by category for organized management*
-
 ### Activity Log View
-![Activity Log View](./results/Screenshot%202026-05-23%20110719.png)
+![Category Filtering](./results/Screenshot%202026-05-23%20110653.png)
 *Complete activity log showing all browsing checks and blocks*
 
 ### Extension Management
-![Extension Management](./results/Screenshot%202026-05-23%20110740.png)
+![Activity Log View](./results/Screenshot%202026-05-23%20110719.png)
 *Browser extension download and configuration page*
+
 
 ---
 
