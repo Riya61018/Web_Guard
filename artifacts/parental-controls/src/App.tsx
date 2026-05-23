@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Profiles from "./pages/Profiles";
 import ProfileDetail from "./pages/ProfileDetail";
 import Activity from "./pages/Activity";
+import Extension from "./pages/Extension";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ function Router() {
         <Route path="/profiles" component={Profiles} />
         <Route path="/profiles/:id" component={ProfileDetail} />
         <Route path="/activity" component={Activity} />
+        <Route path="/extension" component={Extension} />
         <Route component={NotFound} />
       </Switch>
     </AppLayout>

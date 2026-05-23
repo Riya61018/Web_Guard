@@ -1,4 +1,4 @@
-import { Shield, LayoutDashboard, Users, Activity } from "lucide-react";
+import { Shield, LayoutDashboard, Users, Activity, Puzzle } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     { href: "/", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/profiles", icon: Users, label: "Profiles" },
     { href: "/activity", icon: Activity, label: "Activity Log" },
+    { href: "/extension", icon: Puzzle, label: "Extension" },
   ];
 
   return (
