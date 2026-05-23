@@ -1,6 +1,6 @@
 # SafeGuard — Parental Controls Dashboard
 
-A web app that lets parents **block inappropriate websites** for their children, manage multiple child profiles, and monitor browsing activity — with a real browser extension that enforces the rules in Chrome and Firefox.
+A web app that lets parents **block inappropriate websites** for their children, manage multiple child profiles, and monitor browsing activity — with a real browser extension that enforces the rules.
 
 ---
 
@@ -15,6 +15,34 @@ A web app that lets parents **block inappropriate websites** for their children,
 | **Activity Log** | See every blocked attempt — which child, which site, when |
 | **Dashboard** | Live stats: active profiles, total rules, blocks in last 24h |
 | **Browser Extension** | Chrome/Firefox extension that actually enforces the rules |
+
+---
+
+## Screenshots
+
+### Dashboard Overview
+![Dashboard Overview](./results/Screenshot%202026-05-23%20110516.png)
+*Main dashboard showing key statistics and recent blocked attempts*
+
+### Profiles Management
+![Profiles Management](./results/Screenshot%202026-05-23%20110611.png)
+*Child profiles page with active protection status and controls*
+
+### Profile Details - Blocked Sites
+![Profile Details - Blocked Sites](./results/Screenshot%202026-05-23%20110632.png)
+*Managing blocked websites for a specific child profile*
+
+### Category Filtering
+![Category Filtering](./results/Screenshot%202026-05-23%20110653.png)
+*Filter blocked sites by category for organized management*
+
+### Activity Log View
+![Activity Log View](./results/Screenshot%202026-05-23%20110719.png)
+*Complete activity log showing all browsing checks and blocks*
+
+### Extension Management
+![Extension Management](./results/Screenshot%202026-05-23%20110740.png)
+*Browser extension download and configuration page*
 
 ---
 
@@ -207,8 +235,8 @@ The extension is what actually **enforces** the block rules in real time. Withou
 **Step 5:** Open the extension settings:
 - Chrome: click the puzzle icon 🧩 in the toolbar → SafeGuard → three-dot menu → **Options**
 - Fill in:
-  - **SafeGuard API URL**: `http://localhost:8080` (local) or your deployed URL
-  - **Profile ID**: Find the child's ID on the Extension page in the app
+   - **SafeGuard API URL**: `http://localhost:8080` (local) or your deployed URL
+   - **Profile ID**: Find the child's ID on the Extension page in the app
 
 **Step 6:** Test it — type `facebook.com` in the Test box in extension settings. If it's on the child's block list, it will say **BLOCKED**.
 
