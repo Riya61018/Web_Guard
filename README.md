@@ -37,7 +37,7 @@ A web app that lets parents **block inappropriate websites** for their children,
 *Browser extension download and configuration page*
 
 ### Extension Working
-![extension working](./results/Screenshot%2026-05-23%110516.png)
+![extension working](./results/Screenshot%202026-05-23%20110516.png)
 *We can see the site is blocked so it is showing blocked*
 
 
