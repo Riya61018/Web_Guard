@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "RA0541uTD_7u26WYmNE4W"
+uri = "file://README.md"
+type = "text"
+title = "SafeGuard README.md"
