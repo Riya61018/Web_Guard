@@ -18,7 +18,7 @@ A web app that lets parents **block inappropriate websites** for their children,
 
 ---
 
-## Screenshots
+## Result Screenshots
 
 ### Dashboard Overview
 ![Profiles Management](./results/Screenshot%202026-05-23%20110611.png)
